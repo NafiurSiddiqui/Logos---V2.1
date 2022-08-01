@@ -1,0 +1,130 @@
+$inputBoxShadow: #d7caccbe;
+
+ul.ui-input-nav-lists {
+	@include flexSpaceAround;
+
+	> li {
+		font-size: 1.1em;
+	}
+}
+
+.ui-input {
+	border-radius: 1.2em;
+	transition: all 3ms linear;
+	box-shadow: 0px 6px 20px -2px rgba(0, 0, 0, 0.27);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.45) 0%,
+		rgba(255, 255, 255, 0.3735) 100%
+	);
+
+	&-container {
+		background-color: $uiPrimary;
+		padding: 0.4em 0.3em;
+
+		border-radius: 1.2em;
+	}
+	&-nav {
+		line-height: 2.6em;
+		&-list {
+			border-right: 1px solid rgb(70, 68, 68);
+			width: 100%;
+			text-align: center;
+			cursor: pointer;
+			color: #6a7072;
+			background-color: $uiPrimary;
+
+			&:nth-child(1) {
+				border-top-left-radius: 1em;
+			}
+			&:nth-child(3) {
+				border-top-right-radius: 1em;
+				border-right-color: rgb(11 11 11);
+			}
+		}
+	}
+
+	&-form {
+		&-container {
+			padding: 1em 0;
+			text-align: center;
+			background-color: $uiSecondary;
+		
+			border-bottom-left-radius: 1.2em;
+			border-bottom-right-radius: 1.2em;
+		}
+
+		&-heading {
+			margin-bottom: 1em;
+			color: rgb(121, 118, 118);
+			font-style: italic;
+			font-size: 1rem;
+			letter-spacing: 1px;
+		}
+
+		&.text {
+			text-align: center;
+			padding: 1em;
+
+			> input {
+				width: 100%;
+				height: 10rem;
+				border-radius: 0.8em;
+				border-top-style: hidden;
+				border-right-style: hidden;
+				border-left-style: hidden;
+				border-bottom-style: hidden;
+				box-shadow: inset 0 0 0 2px rgb(82, 79, 79);
+				outline: none;
+				padding: 2em;
+				background-color: rgb(49, 47, 47);
+				font-size: 1.5em;
+				color: rgb(172, 168, 168);
+				font-weight: 500;
+				text-align: center;
+
+				&:focus {
+					-webkit-box-shadow: inset 0px 2px 6px 3px $inputBoxShadow;
+					box-shadow: inset 0px 2px 6px 3px $inputBoxShadow;
+					background-color: #535353;
+					border: 1px solid rgba(128, 128, 128, 0.575);
+					color: rgb(241, 241, 241);
+				}
+			}
+		}
+
+		&.color,
+		&.fontFamily {
+			@include flexCentered;
+			flex-direction: column;
+		}
+	}
+}
+
+
+.ui-input-color-lists,
+.ui-input-fontFamily-lists {
+	width: 90%;
+	text-align: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(5em, 1fr));
+	grid-gap: 10px;
+	justify-content: center;
+}
+
+// active class for ui-input nav
+.nav-active {
+	background-color: $uiSecondary;
+	color: rgb(255, 255, 255);
+	cursor: auto;
+}
+
+.ui-input-form.text,
+.ui-input-form.fontFamily,
+.ui-input-form.color {
+	display: none;
+}
+
+.ui-active {
+	display: flex !important;
+}

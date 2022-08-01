@@ -1,0 +1,227 @@
+article.ui-display {
+	background-color: #202020;
+	background: linear-gradient(
+		180deg,
+		rgb(10, 10, 14) 18%,
+		rgba(0, 0, 0, 0.8183474073223039) 100%
+	);
+	padding: 1em;
+	border-radius: 1.2em;
+	border: 10px solid rgb(107, 107, 107);
+	display: grid;
+	grid-template-columns: 100%;
+	justify-content: center;
+	align-content: center;
+	grid-template-rows: 5em 85%;
+}
+
+.ui-display-userText {
+	&-container {
+		width: 100%;
+		min-height: 20em;
+		@include flexCentered;
+		flex-direction: column;
+		@media screen and (max-width: 1200px) {
+			margin-top: 2em;
+		}
+	}
+
+	&-wrapper {
+		@include flexSpaceBetween;
+	}
+
+	&-text {
+		width: auto;
+		height: auto;
+		color: rgb(244, 244, 244);
+		font-size: 70px;
+		padding-bottom: 0.3em;
+		letter-spacing: 2px;
+		word-wrap: anywhere;
+		font-family: 'HerrVonMuellerhoff', cursive;
+		text-shadow: rgb(181, 181, 181) 0px 1px 0px, rgb(169, 169, 169) 0px 2px 0px,
+			rgb(148, 148, 148) 0px 3px 0px, rgb(125, 125, 125) 0px 4px 0px,
+			rgba(0, 0, 0, 0.23) 0px 0px 5px, rgba(0, 0, 0, 0.43) 0px 1px 3px,
+			rgba(0, 0, 0, 0.4) 1px 4px 6px, rgba(0, 0, 0, 0.38) 0px 5px 10px,
+			rgba(0, 0, 0, 0.25) 3px 7px 12px;
+	}
+	// &-and-bar {
+	// 	border-bottom: 2px solid white;
+	// 	width: 100%;
+	// 	position: relative;
+	// 	&::after {
+	// 		content: '';
+	// 		width: 2px;
+	// 		height: 15px;
+	// 		background-color: white;
+	// 		display: inline-block;
+	// 		position: absolute;
+	// 		bottom: 0;
+	// 		right: 0;
+	// 	}
+	// 	&::before {
+	// 		content: '';
+	// 		width: 2px;
+	// 		height: 15px;
+	// 		background-color: white;
+	// 		display: inline-block;
+
+	// 		position: absolute;
+
+	// 		bottom: 0;
+	// 	}
+	// }
+}
+
+.widthActive {
+	border-bottom: 2px solid white;
+	width: 100%;
+	position: relative;
+	&::after {
+		content: '';
+		width: 2px;
+		height: 15px;
+		background-color: white;
+		display: inline-block;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+	&::before {
+		content: '';
+		width: 2px;
+		height: 15px;
+		background-color: white;
+		display: inline-block;
+
+		position: absolute;
+
+		bottom: 0;
+	}
+}
+
+//measurement bar
+
+.measurementBar {
+	&-width-length {
+		color: white;
+		position: relative;
+		left: -1em;
+		transition: all 1s ease-in-out;
+	}
+	&-height {
+		width: 4px;
+		height: 46px;
+		position: relative;
+		right: -1em;
+		border-right: 2px solid white;
+		border-top: 2px solid white;
+		border-bottom: 2px solid white;
+		transition: all 1s ease-in-out;
+		&-wrapper {
+			@include flexCentered;
+			position: relative;
+			right: -1em;
+			padding-bottom: 1.5em;
+		}
+
+		&-length {
+			color: white;
+			position: relative;
+			right: -1.4em;
+		}
+	}
+}
+
+.neonOn {
+	text-shadow: rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
+		rgb(255, 144, 255) 0px 0px 20px, rgb(255, 144, 255) 0px 0px 30px,
+		rgb(255, 144, 255) 0px 0px 40px, rgb(255, 144, 255) 0px 0px 55px,
+		rgb(255, 144, 255) 0px 0px 75px;
+}
+
+//canvas
+
+canvas#displayText {
+	@include borderTest(orange);
+	display: none;
+}
+
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 65px;
+	height: 30px;
+	align-self: baseline;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgb(61, 60, 60);
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	@include flexCentered;
+
+	> span {
+		color: rgb(92, 90, 90);
+		font-weight: 600;
+	}
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 28px;
+	width: 28px;
+	left: 1px;
+	bottom: 1px;
+	background-color: #979797;
+
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input ~ span span:first-of-type {
+	opacity: 0;
+}
+
+input:checked + .slider {
+	background-color: #034174;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(35px);
+	-ms-transform: translateX(35px);
+	transform: translateX(35px);
+}
+
+input:checked ~ span span:last-of-type {
+	opacity: 0;
+}
+
+input:checked ~ span span:first-of-type {
+	opacity: 1;
+	color: whitesmoke;
+}
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}

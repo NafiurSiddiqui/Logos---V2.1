@@ -1,0 +1,29 @@
+//root color for headings
+$uiHeadings: #918a8a;
+
+.ui-input-fontFamily-lists {
+	width: 90%;
+	text-align: center;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 10px;
+}
+
+.ui-input-fontFamily-list {
+	@include borderTest(rgb(56, 56, 56));
+	width: 10em;
+	padding: 0.4em;
+	border-radius: 0.2em;
+	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
+	transition: border 0.3s ease-in-out;
+
+	&:hover {
+		background-color: #0f0f0f;
+	}
+}
+
+.btn-active {
+	background-color: #0f0f0f;
+	border: 2px solid rgb(141, 141, 141);
+}

@@ -1,0 +1,76 @@
+$lightRed: rgb(255, 117, 117);
+$deepBlue: rgb(2, 116, 252);
+$electricBlue: rgb(99, 170, 255);
+$tropicalBlue: rgb(36, 183, 222);
+$iceBlue: rgb(144, 220, 255);
+$green: #20f020;
+$deepGreen: rgba(14, 185, 14, 0.884);
+$mintGreen: rgb(128, 255, 217);
+$warmWhite: rgb(240, 238, 199);
+$white: rgb(225, 227, 230);
+
+.input-color-list {
+	border-radius: 0.2em;
+	width: 5em;
+	padding: 1em;
+	text-align: center;
+	color: rgb(148, 147, 147);
+	cursor: pointer;
+	&-heading {
+		font-size: 0.8rem;
+		margin-top: 0.4em;
+	}
+}
+
+.fa.fa-lightbulb-o {
+	font-size: 1.8rem;
+	transition: text-shadow, color 0.3s ease-in-out;
+}
+
+i[data-color="orange"] {
+	color: orange;
+}
+
+i[data-color="lightRed"] {
+	color: $lightRed;
+}
+
+i[data-color="red"] {
+	color: red;
+}
+
+i[data-color="deepBlue"] {
+	color: $deepBlue;
+}
+
+i[data-color="electricBlue"] {
+	color: $electricBlue;
+}
+
+i[data-color="tropicalBlue"] {
+	color: $tropicalBlue;
+}
+
+i[data-color="iceBlue"] {
+	color: $iceBlue;
+}
+
+i[data-color="green"] {
+	color: $green;
+}
+
+i[data-color="mintGreen"] {
+	color: $mintGreen;
+}
+
+i[data-color="deepGreen"] {
+	color: $deepGreen;
+}
+
+i[data-color="warmWhite"] {
+	color: $warmWhite;
+}
+
+i[data-color="white"] {
+	color: $white;
+}

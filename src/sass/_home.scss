@@ -1,0 +1,209 @@
+
+body {
+	height: 100vh;
+	background: linear-gradient(180deg, #01101f 0%, #1b1b1b 68.37%, #60783f 100%);
+	background-color: #2b1322;
+	overflow: hidden;
+}
+
+
+div#root{
+	height: 100%;
+    width: 100vw;
+	overflow: hidden;
+}
+
+
+.home-logo {
+	& a > img {
+		position: relative;
+		top: 2em;
+		left: calc(1vw + 1rem);
+		height: calc(3.5rem + 1vw);
+	}
+}
+
+.home-content__container {
+	color: white;
+	@include flexCentered;
+	flex-direction: column;
+}
+
+.home-content {
+	text-align: right;
+	@include flexCentered;
+	flex-direction: column;
+	align-items: flex-end;
+	position: relative;
+	bottom: -7em;
+	line-height: 4.8vw;
+	&-heading {
+		font-size: max(3.5vw, 1.6rem);
+		font-family: 'Kodchasan', sans-serif;
+		font-style: italic;
+		color: #edbacf;
+		width: 100%;
+	}
+
+	&-subheading {
+		font-size: max(2.5vw, 1.2rem);
+		font-family: 'Kodchasan', sans-serif;
+		width: 100%;
+	}
+
+	&-btn {
+		border: none;
+		background: none;
+		margin-top: 3em;
+		> a {
+			text-align: center;
+			display: inline-block;
+			width: 8em;
+			height: 2.3em;
+			font-family: 'Caveat', cursive;
+			font-size: 1.4rem;
+			color: rgb(223, 223, 223);
+			text-decoration: none;
+			background: linear-gradient(
+				180deg,
+				#3e021f 0%,
+				rgba(255, 25, 141, 0.73) 100%
+			);
+			padding: 0.5em 1.5em;
+			border-radius: 0.2em;
+			overflow: hidden;
+
+			&:after {
+				display: inline-block;
+				width: 7em;
+				height: 2em;
+				content: '';
+				background: #ff93c7cf;
+				position: relative;
+				right: -3.5em;
+				transform: rotate(100deg);
+				opacity: 0.2;
+				animation: reflect 4s linear 6s infinite forwards;
+			}
+			&:hover {
+				background: linear-gradient(
+					180deg,
+					#e10871 0%,
+					rgba(225, 9, 118, 0.73) 100%
+				);
+			}
+		}
+	}
+}
+
+.home-content__shapes {
+	width: 100%;
+	@include flexSpaceBetween;
+	&-displayTab {
+		width: 20em;
+		min-width: 10em;
+		height: 30em;
+		border: 19px solid #363636;
+		border-radius: 0.5em;
+		background: linear-gradient(
+			290.35deg,
+			rgba(36, 20, 44, 0.45) 7.51%,
+			rgba(8, 50, 88, 0.45) 89.23%
+		);
+		background-color: rgba(0, 0, 0, 0);
+		background-color: #1b1b25;
+		transform: rotate(30deg);
+		position: relative;
+		left: -90px;
+		bottom: -10em;
+	}
+
+	&-ball {
+	
+		width: 19em;
+		@include flexCentered;
+		&-object {
+			width: 330px;
+			height: 160px;
+			background: linear-gradient(
+				180deg,
+				rgba(3, 7, 39, 0.3) 22.92%,
+				rgba(49, 25, 25, 0.039) 100%
+			);
+			background-color: rgba(3, 7, 34, 0.144);
+			border-radius: 50%;
+		}
+
+		&-shadow {
+			width: 275px;
+			height: 200px;
+			background: linear-gradient(
+				180deg,
+				rgba(3, 7, 39, 0.3) 22.92%,
+				rgba(49, 25, 25, 0.039) 100%
+			);
+			border-radius: 25em;
+			position: relative;
+			left: 181px;
+			transform: skewX(-75deg);
+			top: -17px;
+		}
+	}
+}
+
+// animation
+@keyframes reflect {
+	0% {
+		right: -3.5em;
+	}
+	20% {
+		right: 7em;
+	}
+	30% {
+		right: 7em;
+	}
+	40% {
+		right: 7em;
+	}
+	50% {
+		right: 7em;
+	}
+	60% {
+		right: 7em;
+	}
+	90% {
+		right: 7em;
+	}
+	100% {
+		right: 7em;
+	}
+}
+
+@keyframes reflectionForSmallDevice {
+	0% {
+		right: -90%;
+	}
+	20% {
+		right: 100%;
+	}
+	30% {
+		right: 100%;
+	}
+	40% {
+		right: 100%;
+	}
+	50% {
+		right: 100%;
+	}
+	60% {
+		right: 100%;
+	}
+	90% {
+		right: 100%;
+	}
+	100% {
+		right: 100%;
+	}
+}
+
+

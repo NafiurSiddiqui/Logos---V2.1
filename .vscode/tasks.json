@@ -1,0 +1,37 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "status",
+			"type": "shell",
+			"command": "git status",
+			"problemMatcher": []
+		},
+		{
+			"label": "add -A",
+			"type": "shell",
+			"command": "git add -A",
+			"problemMatcher": []
+		},
+		{
+			"label": "commit",
+			"type": "shell",
+			"command": "git commit -m 'progress' "
+		},
+		{
+			"label": "push/2.1",
+			"type": "shell",
+			"command": "git push origin 2.1",
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [],
+			"label": "npm: start",
+			"detail": "react-scripts start"
+		}
+	]
+}
