@@ -123,12 +123,12 @@ function UiColors(props) {
 			//since i do not have colorCode available on this elelment, I target the parent
 			const parentColorCode = e.target.parentElement.dataset.colorcode;
 
-			// props.getActiveColor(parentColorCode);
+			
 			ctx.colorInput.setColorActive(parentColorCode);
 			setBulbClicked(true);
 		} else {
 			setBulbClicked(true);
-			// props.getActiveColor(e.target.dataset.colorcode);
+	
 			ctx.colorInput.setColorActive(e.target.dataset.colorcode);
 		}
 	};
@@ -142,7 +142,9 @@ function UiColors(props) {
 			<h3 className="ui-input-form-heading">CHOOSE COLOUR</h3>
 			<ul className="ui-input-color-lists">
 				{colorBulbs.map((bulb) => {
-					const currentBulb = bulb.colorCode === props.activeColor;
+			
+					const currentBulb = bulb.colorCode === ctx.colorInput.colorActive;
+				
 					const isHovered = bulb.colorCode === targetColorCode;
 
 					return (
@@ -152,7 +154,7 @@ function UiColors(props) {
 							colorCode={bulb.colorCode}
 							colorName={bulb.colorName}
 							onClick={bulbClickHandler}
-							colorActive={props.activeColor}
+							colorActive={ctx.colorInput.colorActive}
 							bulbClicked={bulbClicked}
 							bulbActive={currentBulb}
 							onMouseOver={mouseOverHanlder}

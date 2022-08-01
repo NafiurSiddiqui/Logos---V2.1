@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
 
-//Create Context
-// const textCtx = React.createContext({
-// 	userText: '',
-// 	setUTxt: () => {},
-// });
-
 //default neonColor on load
 const defaultColor = '#20f020';
 
@@ -67,7 +61,7 @@ export const TextCtxProvider = (props) => {
 	//Debounce state for priceCard
 	const [debounceStatus, setDebounceActive] = useState(false);
 
-	// console.log(`utxt: ${uTxt}, storageText: ${storageText}, storageStatus: ${storageStatus}` );
+
 
 	
 

@@ -10,19 +10,6 @@ function UserInput(props) {
 	const [navTxtActive, setNavTxtActive] = useState(true);
 	const [navFontActive, setNavFontActive] = useState(false);
 	const [navColorActive, setNavColorActive] = useState(false);
-	
-
-	const onDelTxtStateHandler = (delTxtState) => {
-		//capture the text here
-		props.captureDelTxtState(delTxtState);
-	};
-
-	const onAddedUserTextHandler = (userText) => {
-		//capture the text here
-		props.captureUserText(userText);
-	};
-
-	
 
 	const navTxtStateHandler = (txtState) => {
 		setNavTxtActive(txtState);
@@ -34,15 +21,12 @@ function UserInput(props) {
 	const navColorStateHandler = (colorState) => {
 		setNavColorActive(colorState);
 	};
-	
 
 	const navState = {
 		txtState: navTxtActive,
 		fontState: navFontActive,
 		colorState: navColorActive,
 	};
-
-	
 
 	return (
 		<article className="ui-input">
@@ -54,24 +38,12 @@ function UserInput(props) {
 					navState={navState}
 				/>
 				<div className="ui-input-form-container">
-					<UiText				
-						onAddedUserText={onAddedUserTextHandler}
-						captureStorageText={props.captureStorageText}
-						onDelTxtState={onDelTxtStateHandler}
-						txtState={props.txtState}
-						navState={navState.txtState}
-						setStorageStatus={props.setStorageStatus}
-						storageStatus={props.storageStatus}
-					/>
-					<UiFonts
-						navState={navState.fontState}
-						getFontFamily={props.getFontFamily}
-						getFontState={props.getFontState}
-					/>
-					<UiColors navState={navState.colorState} getActiveColor={props.getActiveColor} activeColor={props.activeColor}/>
+					<UiText navState={navState.txtState} />
+					<UiFonts navState={navState.fontState} />
+					<UiColors navState={navState.colorState} />
 				</div>
 			</div>
-			<PriceCards letterHeight={props.letterHeight} userText={props.userText} storageText={props.storageText} debounceStatus={props.debounceStatus} />
+			<PriceCards />
 		</article>
 	);
 }

@@ -64,17 +64,16 @@ function UiFonts(props) {
 		if (e.target.localName === 'li') {
 			//get the fontName
 			const targetClass = e.target.classList[1];
-			// props.getFontFamily(targetClass);
+
 			ctx.fontInput.setFontFamily(targetClass);
-			// props.getFontState(true);
+
 			ctx.fontInput.setFontState(true);
 			setActiveButtonId(targetClass);
 		}
 		//if--img
 		if (e.target.localName === 'img') {
 			const targetId = e.target.id;
-			// props.getFontFamily(targetId);
-			// props.getFontState(true);
+
 			ctx.fontInput.setFontFamily(targetId);
 			ctx.fontInput.setFontState(true);
 			setActiveButtonId(targetId);

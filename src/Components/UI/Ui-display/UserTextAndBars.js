@@ -15,17 +15,6 @@ function UserTextAndBars(props) {
 	const ctx = useContext(textCtx);
 
 
-	// console.log(ctx.textInput.uTxt);
-	//props var
-	// let letterHeight = props.letterHeight;
-	// let txtState = props.txtState;
-	// let userText = props.capturedUserText;
-	// let storeText = props.capturedStorageText;
-	// const storageStatus = props.storageStatus;
-	// //color states
-	// const neonState = props.neonSwitchState;
-	// const colorActive = props.activeColor;
-
 	let letterHeight = ctx.dimension.height;
 	let txtState = ctx.textInput.txtState;
 	let userText = ctx.textInput.uTxt;
@@ -39,12 +28,10 @@ function UserTextAndBars(props) {
 	
 	useEffect(() => {
 		if (
-			// props.setFontFamily === 'RasterSlice' ||
-			// props.setFontFamily === 'Amsterdam' ||
-			// props.setFontFamily === 'Orbitron'
-			ctx.fontInput.setFontFamily === 'RasterSlice' ||
-			ctx.fontInput.setFontFamily === 'Amsterdam' ||
-			ctx.fontInput.setFontFamily === 'Orbitron'
+		
+			ctx.fontInput.fontFamily === 'RasterSlice' ||
+			ctx.fontInput.fontFamily === 'Amsterdam' ||
+			ctx.fontInput.fontFamily === 'Orbitron'
 		) {
 			setLargeFont(true);
 		} else {
@@ -56,14 +43,14 @@ function UserTextAndBars(props) {
 			if (txtState === true || storeText !== null) {
 				
 				setShowBars(true);
-				// props.setWidth(`${storeText.length * 2}CM`);
+	
 				ctx.dimension.setWidth(`${storeText.length * 2}CM`)
 
 				setDisplayText(storeText);
 			}
 
 			if (ctx.textInput.uTxt.length > 0) {
-				// props.setDebounce(true);
+	
 				ctx.debouncer.setDebounceState(true);
 				setDisplayText(userText);
 			}
@@ -71,13 +58,13 @@ function UserTextAndBars(props) {
 			if (ctx.textInput.uTxt.length === 0) {
 			
 				setDisplayText('Your Text');
-				// props.setWidth(``);
+		
 				ctx.dimension.setWidth(``)
 				setShowBars(false);
 			}
 
 			if (storageStatus === false && txtState === true) {
-				// props.setWidth(`${ctx.textInput.uTxt.length * 2} CM`);
+			
 				ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`)
 			}	
 		}, 300);
@@ -85,26 +72,13 @@ function UserTextAndBars(props) {
 		return () => {
 			clearTimeout(timerHandler);
 			
-			// props.setDebounce(false);
+	
 			ctx.debouncer.setDebounceState(false);
 		};
 	}, [txtState, ctx, storeText, userText, storageStatus]);
 	
 
-	// useEffect(() => {
-	// 	if (
-	// 		// props.setFontFamily === 'RasterSlice' ||
-	// 		// props.setFontFamily === 'Amsterdam' ||
-	// 		// props.setFontFamily === 'Orbitron'
-	// 		ctx.fontInput.setFontFamily === 'RasterSlice' ||
-	// 		ctx.fontInput.setFontFamily === 'Amsterdam' ||
-	// 		ctx.fontInput.setFontFamily === 'Orbitron'
-	// 	) {
-	// 		setLargeFont(true);
-	// 	} else {
-	// 		setLargeFont(false);
-	// 	}
-	// }, [ctx]);
+	
 
 	const neonShadow = ` rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
 		${colorActive} 0px 0px 20px, ${colorActive} 0px 0px 30px,
