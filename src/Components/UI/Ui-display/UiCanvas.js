@@ -1,22 +1,25 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { clearCanvas } from '../../HelperFunc';
+import textCtx from '../../store/txtCtx';
 
-function Canvas(props) {
-	
-	let userText = props.capturedUserText;
-	const storageText = props.capturedStorageText;
-	const storageStatus = props.storageStatus;
-	let delTxtState = props.delTxtState;
-	const fontState = props.fontState;
-	const fontFamily = props.setFontFamily;
+function Canvas() {
+	const ctx = useContext(textCtx);
+
+	let storageText = ctx.textInput.storageText;
+	const storageStatus = ctx.textInput.storageStatus;
+	let delTxtState = ctx.textInput.delTxtState;
+	const fontState = ctx.fontInput.fontState;
+	const fontFamily = ctx.fontInput.setFontFamily;
 
 	const ctxRef = useRef();
 
 	useEffect(() => {
-		const ctx = ctxRef.current.getContext('2d');
-		const metrics = ctx.measureText(userText);
+		let userText = ctx.textInput.uTxt;
 
-		props.captureletterHeight(
+		const canvaCtx = ctxRef.current.getContext('2d');
+		const metrics = canvaCtx.measureText(userText);
+
+		ctx.dimension.setHeight(
 			Math.floor(metrics.actualBoundingBoxAscent) +
 				Math.floor(metrics.actualBoundingBoxDescent)
 		);
@@ -24,46 +27,27 @@ function Canvas(props) {
 		const canvasWidth = ctxRef.current.width;
 		const canvasHeight = ctxRef.current.height;
 
-		
-		//WRITE and CLEAR canvas 
+		//WRITE and CLEAR canvas
 		if (delTxtState === true) {
-			clearCanvas(ctx, canvasWidth, canvasHeight);
+			clearCanvas(canvaCtx, canvasWidth, canvasHeight);
 		}
 
 		fontState === true
-			? (ctx.font = `4rem ${fontFamily}`)
-			: (ctx.font = '4rem Tangerine');
+			? (canvaCtx.font = `4rem ${fontFamily}`)
+			: (canvaCtx.font = '4rem Tangerine');
 
-		ctx.fillStyle = 'White';
-
+		canvaCtx.fillStyle = 'White';
 
 		if (storageStatus === false) {
-			ctx.fillText(userText, 0, 50);
+			canvaCtx.fillText(userText, 0, 50);
 		}
 
-		if (userText.length === 0) {
-			clearCanvas(ctx, canvasWidth, canvasHeight);
-		}
-
-		
 		if (storageText !== null) {
-			clearCanvas(ctx, canvasWidth, canvasHeight);
-			ctx.fillText(storageText, 0, 50);
+			clearCanvas(canvaCtx, canvasWidth, canvasHeight);
+			canvaCtx.fillText(storageText, 0, 50);
 		}
-	}, [
-		userText,
-		delTxtState,
-		props,
-		storageText,
-		storageStatus,
-		fontFamily,
-		fontState,
-	]);
+	}, [ctx, delTxtState, storageText, storageStatus, fontFamily, fontState]);
 
 	return <canvas id="displayText" ref={ctxRef}></canvas>;
 }
 export default Canvas;
-
-/**
- * @useRef -  I did not know how to have access to other HTML element living in another component. using useRef i have access to the HTML object of that node.
- */

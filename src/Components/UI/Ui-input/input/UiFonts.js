@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ImagesBtn from '../../../Images';
+import textCtx from '../../../store/txtCtx';
 import BtnFont from './BtnFont';
-
-
 
 const buttons = [
 	{
@@ -55,39 +54,32 @@ const buttons = [
 	},
 ];
 
-
-
-
-
 function UiFonts(props) {
-
 	const [activeButtonId, setActiveButtonId] = useState(null);
 
-	
+	const ctx = useContext(textCtx);
 
 	const fontHandler = (e) => {
-
 		//if--click is list
 		if (e.target.localName === 'li') {
 			//get the fontName
 			const targetClass = e.target.classList[1];
-			props.getFontFamily(targetClass);
-			props.getFontState(true);
+
+			ctx.fontInput.setFontFamily(targetClass);
+
+			ctx.fontInput.setFontState(true);
 			setActiveButtonId(targetClass);
-		
-		
 		}
 		//if--img
 		if (e.target.localName === 'img') {
-			const targetId = e.target.id
-			props.getFontFamily(targetId);
-			props.getFontState(true);
+			const targetId = e.target.id;
+
+			ctx.fontInput.setFontFamily(targetId);
+			ctx.fontInput.setFontState(true);
 			setActiveButtonId(targetId);
-		
 		}
 	};
 
-	
 	return (
 		<section
 			className={`ui-input-form fontFamily  ${
@@ -98,7 +90,6 @@ function UiFonts(props) {
 			<ul className="ui-input-fontFamily-lists">
 				{buttons.map((btn) => {
 					const isActive = btn.id === activeButtonId;
-					
 					return (
 						<BtnFont
 							className={`ui-input-fontFamily-list ${btn.liClass} ${

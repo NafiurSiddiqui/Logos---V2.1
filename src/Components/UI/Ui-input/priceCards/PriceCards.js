@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import textCtx from '../../../store/txtCtx';
 import PriceCard from './PriceCard';
 
 const init = {
@@ -14,29 +15,36 @@ function PriceCards(props) {
 	const [letterWidth, setletterWidth] = useState(init);
 	const [height, setHeight] = useState(init);
 	
-
+	const ctx = useContext(textCtx);
+	
+	
 	let userText;
 	let storageText = '---';
-	const letterHeight = props.letterHeight;
+
+	const letterHeight = ctx.dimension.height;
 	let width = null;
-	let storageValue = localStorage.getItem('storeText');
-	const debounceStat = props.debounceStatus;
+	let storageStatus = ctx.textInput.storageStatus;
+	
+	const debounceStat = ctx.debouncer.debounceStatus;;
 
 	
 
 
-	props.userText === undefined ? userText = '---': userText= props.userText;
+
+	ctx.textInput.uTxt === undefined ? userText = '---' : userText = ctx.textInput.uTxt;
 	
+
 	
-	
-	if (props.userText !== undefined){
-		width = props.userText.length;
+	if (ctx.textInput.uTxt !== undefined){
+		width = ctx.textInput.uTxt.length;
 		
 	}
 
-	if (storageValue !== null){
-		width = storageValue.length;
-		storageText = storageValue;
+
+	
+	if (storageStatus !== false && ctx.textInput.storageText){
+		storageText = ctx.textInput.storageText;
+		width = storageText.length;
 	
 	}
 	
@@ -87,11 +95,6 @@ function PriceCards(props) {
 	}, [debounceStat,letterHeight, storageTextStatus,userText,storageText,width])
 	
 
-
-
-
-	
-	
 	return (
 		<div className="ui-price-card__container">
 			<ul className="ui-price-cards">

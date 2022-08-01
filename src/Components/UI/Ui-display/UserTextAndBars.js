@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import textCtx from '../../store/txtCtx';
 
 const windowWidth = window.innerWidth;
 
@@ -10,66 +11,73 @@ function UserTextAndBars(props) {
 	//STYLING STATE
 	const [largeFont, setLargeFont] = useState();
 
-	//props var
-	let letterHeight = props.letterHeight;
-	let txtState = props.txtState;
-	let userText = props.capturedUserText;
-	let storeText = props.capturedStorageText;
-	const storageStatus = props.storageStatus;
+	const ctx = useContext(textCtx);
+
+
+	let letterHeight = ctx.dimension.height;
+	let txtState = ctx.textInput.txtState;
+	let userText = ctx.textInput.uTxt;
+	let storeText = ctx.textInput.storageText;
+	const storageStatus = ctx.textInput.storageStatus;
 	//color states
 	const neonState = props.neonSwitchState;
-	const colorActive = props.activeColor;
+	const colorActive = ctx.colorInput.colorActive;
 
-	// let txtLength = userText.length;
-	let txtLength = userText.length;
 
-	useEffect(() => {
-		let timerHandler = setTimeout(() => {
-		
-			if (txtState === true || storeText !== null) {
-			
-				setShowBars(true);
-				props.setWidth(`${storeText.length * 2}CM`);
-				setDisplayText(storeText);
-			}
-
-			if (userText.length > 0) {
-				props.setDebounce(true);
-
-				setDisplayText(userText);
-			}
-
-			if (userText.length === 0) {
-			
-				setDisplayText('Your Text');
-				props.setWidth(``);
-				setShowBars(false);
-			}
-
-			if (storageStatus === false && txtState === true) {
-				props.setWidth(`${txtLength * 2} CM`);
-			}
-		}, 300);
-
-		return () => {
-			clearTimeout(timerHandler);
-			
-			props.setDebounce(false);
-		};
-	}, [txtState, txtLength, storeText, userText, storageStatus, props]);
 	
-
 	useEffect(() => {
 		if (
-			props.setFontFamily === 'RasterSlice' ||
-			props.setFontFamily === 'Amsterdam' ||
-			props.setFontFamily === 'Orbitron'
+		
+			ctx.fontInput.fontFamily === 'RasterSlice' ||
+			ctx.fontInput.fontFamily === 'Amsterdam' ||
+			ctx.fontInput.fontFamily === 'Orbitron'
 		) {
 			setLargeFont(true);
 		} else {
 			setLargeFont(false);
 		}
-	}, [props]);
+		
+		let timerHandler = setTimeout(() => {
+			
+			if (txtState === true || storeText !== null) {
+				
+				setShowBars(true);
+	
+				ctx.dimension.setWidth(`${storeText.length * 2}CM`)
+
+				setDisplayText(storeText);
+			}
+
+			if (ctx.textInput.uTxt.length > 0) {
+	
+				ctx.debouncer.setDebounceState(true);
+				setDisplayText(userText);
+			}
+
+			if (ctx.textInput.uTxt.length === 0) {
+			
+				setDisplayText('Your Text');
+		
+				ctx.dimension.setWidth(``)
+				setShowBars(false);
+			}
+
+			if (storageStatus === false && txtState === true) {
+			
+				ctx.dimension.setWidth(`${ctx.textInput.uTxt.length * 2} CM`)
+			}	
+		}, 300);
+
+		return () => {
+			clearTimeout(timerHandler);
+			
+	
+			ctx.debouncer.setDebounceState(false);
+		};
+	}, [txtState, ctx, storeText, userText, storageStatus]);
+	
+
+	
 
 	const neonShadow = ` rgb(255, 255, 255) 0px 0px 5px, rgb(255, 255, 255) 0px 0px 10px,
 		${colorActive} 0px 0px 20px, ${colorActive} 0px 0px 30px,
@@ -80,6 +88,8 @@ function UserTextAndBars(props) {
 	const fontForLargeDevice = windowWidth > 2200? '7em': '5em';
 	const deviceWidth = windowWidth <= 600 ? '55px': fontForLargeDevice;
 
+	
+	
 
 	
 	return (
@@ -93,7 +103,7 @@ function UserTextAndBars(props) {
 					<p
 						className="ui-display-userText-text neonOn"
 						style={{
-							fontFamily: props.setFontFamily,
+							fontFamily: ctx.fontInput.fontFamily,
 							fontSize: largeFont ? '3em' : deviceWidth,
 							textShadow: !neonState ? 'none' : neonShadow,
 						}}
@@ -117,7 +127,7 @@ function UserTextAndBars(props) {
 			</div>
 
 			<span className="measurementBar-width-length">
-				{showBars && props.width}
+				{showBars && ctx.dimension.width}
 			</span>
 		</>
 	);
