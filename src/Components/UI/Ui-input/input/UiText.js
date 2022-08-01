@@ -9,17 +9,18 @@ function UiText(props) {
 	const [isTouched, setIsTouched] = useState(false);
 	const [storeText, setStoreText] = useState();
 
-	const uTxt = useContext(textCtx);
-	// console.log(uTxt.userText);
+	const ctx = useContext(textCtx);
+	
 	const userTextChangeHandler = (e) => {
 		if (e.nativeEvent.inputType === 'deleteContentBackward') {
 			setdeletedText(e.target.value);
 			setDelTxtState(true);
 		}
-		props.txtState(true);
+		// props.txtState(true);
+		ctx.textInput.setTxtState(true);
 		setIsTouched(true);
 		setUserText(e.target.value);
-		uTxt.setUTxt(e.target.value)
+		ctx.textInput.setUTxt(e.target.value);
 	};
 	
 	useEffect(() => {
@@ -36,32 +37,41 @@ function UiText(props) {
 			//storage availability
 			localStorage.setItem(test, test);
 			localStorage.removeItem(test);
-			props.setStorageStatus(true);
-			
+			// props.setStorageStatus(true);
+			ctx.textInput.setStorageStatus(true);
+
 			if (userText.length > 0) {
 				setStoreText(localStorage.setItem('storeText', userText));
-				props.captureStorageText(localStorage.setItem('storeText', userText))
+				// props.captureStorageText(localStorage.setItem('storeText', userText));
+
+				// ctx.textInput.setStorageText(localStorage.setItem('storeText', userText))
 			}
 			
-			setStoreText(localStorage.getItem('storeText'));
-			
-			props.captureStorageText(storeText);
+			//? do you need this following two line
+
+			setStoreText(localStorage.getItem('storeText'));			
+			// props.captureStorageText(storeText);
+			ctx.textInput.setStorageText(storeText);
 			
 			//local storgae clearance
 			if (isTouched && userText.length === 0){
 			
 				localStorage.clear();
-				props.txtState(false);
+				// props.txtState(false);
+				ctx.textInput.setTxtState(false);
 			}
 
 		} catch (e) {
-			props.setStorageStatus(false);
+			// props.setStorageStatus(false);
+			ctx.textInput.setStorageStatus(false);
 			
 		}
 		
-		props.onDelTxtState(delTxtState);
-		props.onAddedUserText(userText);
-	}, [props, userText, deletedText, delTxtState, storeText, isTouched]);
+		// props.onDelTxtState(delTxtState);
+		ctx.textInput.setDelTxtState(delTxtState);
+		// props.onAddedUserText(userText);
+		ctx.textInput.setUTxt(userText)
+	}, [props, userText, deletedText, delTxtState, storeText, isTouched,ctx]);
 	
 	
 	return (

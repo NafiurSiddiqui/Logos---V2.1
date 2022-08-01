@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import textCtx from '../../../store/txtCtx';
 import PriceCard from './PriceCard';
 
 const init = {
@@ -14,12 +15,17 @@ function PriceCards(props) {
 	const [letterWidth, setletterWidth] = useState(init);
 	const [height, setHeight] = useState(init);
 	
-
+	const ctx = useContext(textCtx);
+	
+	
 	let userText;
 	let storageText = '---';
 	const letterHeight = props.letterHeight;
 	let width = null;
-	let storageValue = localStorage.getItem('storeText');
+	let storageStatus = ctx.textInput.storageStatus;
+	
+	// let storageValue = ctx.textInput.storageText; 
+	let storageValue = null; 
 	const debounceStat = props.debounceStatus;
 
 	
@@ -33,6 +39,8 @@ function PriceCards(props) {
 		width = props.userText.length;
 		
 	}
+
+	// storageStatus !== false? storageValue = 
 
 	if (storageValue !== null){
 		width = storageValue.length;
