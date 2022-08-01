@@ -20,8 +20,11 @@ function UiText(props) {
 		ctx.textInput.setTxtState(true);
 		setIsTouched(true);
 		setUserText(e.target.value);
+		
 		ctx.textInput.setUTxt(e.target.value);
 	};
+
+	
 	
 	useEffect(() => {
 		if (userText.length >= 20) {

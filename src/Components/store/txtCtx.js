@@ -35,9 +35,9 @@ const textCtx = React.createContext({
 	},
 	dimension: {
 		width: 0,
-		widthHandler: () => {},
+		setWidth: () => {},
 		height: 0,
-		heightHandler: () => {},
+		setHeight: () => {},
 	},
 	debouncer: {
 		debounceStatus: false,
@@ -67,7 +67,9 @@ export const TextCtxProvider = (props) => {
 	//Debounce state for priceCard
 	const [debounceStatus, setDebounceActive] = useState(false);
 
-	console.log(`utxt: ${uTxt}, storageText: ${storageText}, storageStatus: ${storageStatus}` );
+	// console.log(`utxt: ${uTxt}, storageText: ${storageText}, storageStatus: ${storageStatus}` );
+
+	
 
 	const uTxthandler = (uTxt) => {
 		setUTxt(uTxt);
@@ -140,9 +142,9 @@ export const TextCtxProvider = (props) => {
 		},
 		dimension: {
 			width,
-			widthHandler: widthHandler,
+			setWidth: widthHandler,
 			height:letterHeight,
-			heightHandler: heightHandler,
+			setHeight: heightHandler,
 		},
 		debouncer: {
 			debounceStatus,

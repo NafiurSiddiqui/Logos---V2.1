@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import textCtx from '../../../store/txtCtx';
 import BtnColor from './BtnColor';
 
 const colorBulbs = [
@@ -95,7 +96,9 @@ function UiColors(props) {
 	const [targetColorCode, setTargetColorCode] = useState(null);
 
 	//MouseOver state?, get the associated color code and set it
+	const ctx = useContext(textCtx);
 
+	
 	//Mouseenter
 	const mouseOverHanlder = (e) => {
 		setTargetColorCode(e.target.dataset.colorcode);
@@ -111,7 +114,8 @@ function UiColors(props) {
 	//Activating button
 	const bulbClickHandler = (e) => {
 		setBulbClicked(false);
-		props.getActiveColor(null);
+		// props.getActiveColor(null);
+		ctx.colorInput.setColorActive(null);
 
 		if (e.target.localName === 'i') {
 			//To stop double click on <i> el
@@ -119,11 +123,13 @@ function UiColors(props) {
 			//since i do not have colorCode available on this elelment, I target the parent
 			const parentColorCode = e.target.parentElement.dataset.colorcode;
 
-			props.getActiveColor(parentColorCode);
+			// props.getActiveColor(parentColorCode);
+			ctx.colorInput.setColorActive(parentColorCode);
 			setBulbClicked(true);
 		} else {
 			setBulbClicked(true);
-			props.getActiveColor(e.target.dataset.colorcode);
+			// props.getActiveColor(e.target.dataset.colorcode);
+			ctx.colorInput.setColorActive(e.target.dataset.colorcode);
 		}
 	};
 
