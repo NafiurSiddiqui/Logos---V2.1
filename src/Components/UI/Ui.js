@@ -4,7 +4,6 @@ import { TextCtxProvider } from '../store/txtCtx';
 import UiDisplay from './Ui-display/UiDisplay';
 import UserInput from './Ui-input/input/UserInput';
 
-//default neonColor on load
 const defaultColor = '#20f020';
 
 function Ui() {
@@ -25,6 +24,8 @@ function Ui() {
 	const [colorActive, setColorActive] = useState(defaultColor);
 	//Debounce state for priceCard
 	const [debounceActive, setDebounceActive] = useState(false);
+
+	
 
 	const debounceHandler = (stat) => {
 		setDebounceActive(stat);
