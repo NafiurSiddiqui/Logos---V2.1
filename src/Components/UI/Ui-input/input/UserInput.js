@@ -5,11 +5,12 @@ import UiColors from './UiColors';
 import UiFonts from './UiFonts';
 import UiText from './UiText';
 
-function UserInput(props) {
+function UserInput() {
 	//nav state here
 	const [navTxtActive, setNavTxtActive] = useState(true);
 	const [navFontActive, setNavFontActive] = useState(false);
 	const [navColorActive, setNavColorActive] = useState(false);
+	
 
 	const navTxtStateHandler = (txtState) => {
 		setNavTxtActive(txtState);
@@ -21,6 +22,8 @@ function UserInput(props) {
 	const navColorStateHandler = (colorState) => {
 		setNavColorActive(colorState);
 	};
+
+
 
 	const navState = {
 		txtState: navTxtActive,

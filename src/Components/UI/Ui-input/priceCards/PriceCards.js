@@ -40,8 +40,6 @@ function PriceCards(props) {
 		
 	}
 
-
-	
 	if (storageStatus !== false && ctx.textInput.storageText){
 		storageText = ctx.textInput.storageText;
 		width = storageText.length;
